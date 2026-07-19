@@ -55,11 +55,15 @@ First launch shows the standard *"downloaded from the internet"* prompt — clic
 
 ## Guides
 
-**In this repo:**
-- 📄 [Install LidRun & open it the first time](docs/install.md)
-- 📄 [Keep Claude Code / Cursor / Docker running with the lid closed](docs/keep-claude-code-running.md)
-- 📄 [How to keep your Mac from sleeping](docs/keep-mac-from-sleeping.md)
-- 📄 [Clamshell mode on a MacBook](docs/clamshell-mode.md)
+**Guides in this repo:**
+
+*Getting started* — [Install LidRun & open it the first time](docs/install.md)
+
+*Keep your AI/dev tools running (lid closed)* — [Claude Code](docs/keep-claude-code-running.md) · [Cursor](docs/keep-cursor-running.md) · [Docker builds](docs/prevent-mac-sleep-docker-build.md) · [Ollama / local LLMs](docs/keep-ollama-running.md)
+
+*Keep your Mac awake — how-to* — [Keep your Mac from sleeping](docs/keep-mac-from-sleeping.md) · [Keep your Mac awake](docs/keep-mac-awake.md) · [Clamshell mode](docs/clamshell-mode.md) · [From the Terminal (CLI)](docs/keep-mac-awake-terminal.md)
+
+*Compare & safety* — [LidRun vs caffeinate vs Amphetamine](docs/lidrun-vs-caffeinate-vs-amphetamine.md) · [Running your Mac overnight, safely](docs/run-mac-overnight-safely.md)
 
 Full, up-to-date guides live on **lidrun.com** (English):
 

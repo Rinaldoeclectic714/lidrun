@@ -1,46 +1,100 @@
 # How to keep your Mac from sleeping
 
-**Short answer:** to keep a Mac from sleeping you can (1) change **System Settings → Lock Screen / Battery** so the display and system never sleep, (2) run the built-in **`caffeinate`** command in Terminal for one session, or (3) use a menu-bar app like **[LidRun](https://lidrun.com/download)** that keeps the Mac awake only while your work is actually running — including with the **lid closed** — and then lets it sleep again. Which one you want depends on *why* you need it awake.
+**Short answer:** To keep your Mac from sleeping, either change **System Settings → Lock Screen + Battery** so it never sleeps automatically, or run the built-in **`caffeinate`** command in Terminal. For a single job, `caffeinate -i -- <command>` prevents your Mac from sleeping only until that command finishes, then releases it. For lid-closed or workload-aware sessions, use a dedicated tool.
 
-This page is a quick, practical map. Each method links to the full guide on **[lidrun.com](https://lidrun.com)**.
+There is no single "stay awake" switch — the right method depends on whether you want it permanent, per-command, or tied to a workload. Here's every option, from simplest to most advanced.
 
-## 1. System Settings (no tools)
+## 1. System Settings (no Terminal)
 
-- **Ventura and later:** System Settings → **Lock Screen** → set *Turn display off* to a longer time; System Settings → **Battery** → *Options* → prevent automatic sleeping when the display is off (on power adapter).
-- Good for a desk setup on mains power. The catch: it's a **global, always-on** change that's easy to forget — your Mac then never sleeps even when you *want* it to, which wears the battery and runs it hot.
+The GUI route lives in two places:
 
-## 2. `caffeinate` (built into macOS)
+- **System Settings → Lock Screen** — set *Turn display off on battery/power adapter when inactive* to a longer interval or **Never**. This stops the *display* from sleeping.
+- **System Settings → Battery → Options** — enable **Prevent automatic sleeping on power adapter when the display is off** (on a MacBook; desktops show a similar "Prevent automatic sleeping" toggle). This is the one that keeps the *system* from sleeping.
 
-Keep the Mac awake for exactly one command:
+Good for: leaving a long download or render running at your desk. Downside: it's global and stays on until you remember to turn it off. It also won't survive a closed lid on a MacBook.
+
+## 2. `caffeinate` — the built-in command
+
+`caffeinate` ships with macOS and is the cleanest per-session tool. With no arguments it asserts until you press Ctrl-C. The flags are the useful part:
 
 ```sh
-caffeinate -i -- <your-long-command>
+caffeinate -i          # prevent idle system sleep
+caffeinate -d          # prevent the display from sleeping
+caffeinate -m          # prevent the disk from idle-sleeping
+caffeinate -s          # prevent system sleep only while on AC power
+caffeinate -u -t 300   # simulate user activity for 300 seconds
 ```
 
-It's perfect for a single terminal job and releases the moment the command finishes. It does **not** cover a closed lid, a GUI app, or battery/thermal safety. → [The `caffeinate` command, explained](https://lidrun.com/blog/caffeinate-mac-command)
+The best pattern is scoping the assertion to a command so it auto-releases:
 
-## 3. `pmset` (advanced — be careful)
+```sh
+# Keep awake for exactly this build, then release
+caffeinate -i -- npm run build
 
-`sudo pmset -a disablesleep 1` forces the Mac to stay awake even with the lid closed — but it's a **permanent, system-wide** override that's easy to leave on and can overheat a closed Mac. Prefer a tool that pairs every "stay awake" with an automatic "release". → [A safer alternative to `pmset disablesleep`](https://lidrun.com/blog/safe-alternative-to-pmset-disablesleep)
+# Keep awake while a specific process (by PID) is alive
+caffeinate -w 12345
+```
 
-## 4. Keep it awake *with the lid closed*
+`-t <seconds>` sets a timeout; `-w <PID>` ties the assertion to another process's lifetime. Because the assertion ends when the command or PID does, you never leave your Mac awake by accident. For a deeper walkthrough of every flag and real recipes, see the [full `caffeinate` guide](https://lidrun.com/blog/caffeinate-mac-command).
 
-None of the built-ins are built for closing the lid and walking away. If you need a build, a Docker job, or an AI agent to keep running after you shut the MacBook, see **[clamshell mode on a Mac](https://lidrun.com/blog/clamshell-mode-on-mac)**.
+Limitation: `caffeinate` keeps the Mac awake, but on a MacBook it does **not** keep it running with the lid closed.
 
-## When to reach for LidRun instead
+## 3. `pmset` — the power-management sledgehammer
 
-The methods above keep the Mac awake **unconditionally** — you have to remember to turn them off. **[LidRun](https://lidrun.com/download)** is a [safe runtime layer](https://lidrun.com/blog/what-is-a-safe-runtime-layer), not a blind wake-lock: it holds the Mac awake **only while real work is running** (Claude Code, Cursor, Docker, Ollama, long terminal jobs), keeps it going with the **lid closed**, and **auto-releases** when the job ends or a battery/thermal limit is reached. It's free forever for simple keep-awake sessions; Pro unlocks the full closed-lid AI workflow. → [Download](https://lidrun.com/download) · [Pricing](https://lidrun.com/pricing)
+`pmset` edits your Mac's actual power schedule. It's powerful and mostly a diagnostic tool, but one flag comes up constantly:
+
+```sh
+# Inspect current assertions and settings
+pmset -g assertions
+pmset -g custom
+
+# The one people copy from forums — read the warning below first
+sudo pmset -a disablesleep 1
+```
+
+`sudo pmset -a disablesleep 1` disables sleep entirely, for **all** power sources, **permanently** — it survives reboots and lid-close. There is no timer, no auto-release, and no reminder. If you forget it, your Mac can run hot in a bag or drain to empty overnight. Always pair it with the explicit undo:
+
+```sh
+sudo pmset -a disablesleep 0
+```
+
+Treat `disablesleep` as a manual toggle you're responsible for, not a set-and-forget. If you want the closed-lid behavior it enables but with guardrails and automatic release, see this [safer alternative to `pmset disablesleep`](https://lidrun.com/blog/safe-alternative-to-pmset-disablesleep).
+
+## 4. Closing the lid (clamshell without an external display)
+
+By default a MacBook sleeps the moment you close the lid unless it's connected to power *and* an external display/keyboard. To run a job with the lid shut and **no** external monitor, you need something holding `disablesleep` (or an equivalent assertion) for the duration. Doing it by hand means the raw `pmset` toggle above — permanent and global. A guarded tool scopes it to the session and reverses it when the job ends. Background on how clamshell mode actually works: [clamshell mode on Mac](https://lidrun.com/blog/clamshell-mode-on-mac).
+
+## 5. A workload-aware tool that auto-releases
+
+The gap in every method above is that they don't know when your work is done. [LidRun](https://lidrun.com/download) is a menu-bar app built for exactly this: it holds the standard IOKit power assertions while a workload is running, then releases the Mac when the job ends or a safety limit is hit.
+
+- **Auto Mode** keeps the Mac awake only while your workload is actually working. Known agents — Claude Code, Cursor, Codex, Cline, Aider, Continue, Goose, Ollama, LM Studio — count as working *by presence*, so an agent idling at ~0% CPU while it waits on an API call is never dropped mid-task.
+- **Closed-Lid workflow** keeps a job running with the lid shut — guarded, not a blind wake-lock.
+- **Session timer** from 30 minutes to 8 hours.
+- **CLI**: `lidrun -- <command>` keeps the Mac awake for exactly that command, then releases — the same scoping idea as `caffeinate --`, plus the closed-lid and safety layers.
+- **Guardrails**: low-battery stop, charging-only mode, thermal back-off, and Why Awake / Why Stopped transparency so you always know what's holding the Mac open.
+
+It reduces the risk of the "forgot I disabled sleep" scenario, but it doesn't remove physics — keep the machine ventilated when you run it closed. More on the design: [what a safe runtime layer is](https://lidrun.com/blog/what-is-a-safe-runtime-layer).
+
+## Which one should I use?
+
+- **One-off at your desk, lid open:** `caffeinate -i -- <cmd>`.
+- **A GUI download you'll babysit:** System Settings toggles.
+- **Debugging power behavior:** `pmset -g assertions`.
+- **Lid closed, or "keep going while my agent works, then stop":** a workload-aware tool.
 
 ## FAQ
 
-**How do I stop my Mac from sleeping automatically?**
-Adjust Lock Screen + Battery settings, or run `caffeinate -i` for a single session. For a job you want to leave running after closing the lid, use a workload-aware tool that releases the Mac when the work ends.
+**How do I stop my Mac from sleeping in Terminal?**
+Run `caffeinate -i` to prevent idle sleep until you hit Ctrl-C, or `caffeinate -i -- <command>` to keep it awake only until that command finishes.
 
-**How do I keep my Mac awake but still let it sleep when I'm done?**
-Unconditional methods (`pmset`, Settings) can't do that. A tool that watches your workload — like [LidRun](https://lidrun.com/download) — keeps the Mac awake while work runs and sleeps it automatically afterward.
+**How do I prevent my Mac from sleeping when the lid is closed?**
+A closed lid triggers sleep unless something holds a `disablesleep` assertion. `sudo pmset -a disablesleep 1` does it globally and permanently; a guarded tool like LidRun scopes it to the session and releases it automatically.
 
-**Is it safe to prevent my Mac from sleeping overnight?**
-On a ventilated, mains-powered desk it's usually fine. With the lid closed, cooling is reduced — keep the Mac on a hard surface, watch temperature and battery, and prefer a tool with a low-battery stop and thermal back-off. → [Safety](https://lidrun.com/safety)
+**Does `caffeinate` keep the display on?**
+Only with `-d`. Plain `caffeinate` and `-i` prevent *system* sleep but let the display turn off. Add `-d` if you need the screen to stay lit.
 
----
-*Full, up-to-date guides: [lidrun.com](https://lidrun.com) · Get the app: [lidrun.com/download](https://lidrun.com/download)*
+**Is `sudo pmset -a disablesleep 1` safe to leave on?**
+It works, but it's permanent, global, and survives reboots with no auto-release — easy to forget and let the Mac overheat or drain. Undo it with `sudo pmset -a disablesleep 0`, or use a tool that reverses the assertion when your work ends.
+
+*[Download LidRun](https://lidrun.com/download) — free forever for simple sessions; Pro unlocks the full closed-lid AI workflow ([pricing](https://lidrun.com/pricing)).*
