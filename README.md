@@ -135,6 +135,27 @@ Browse more in the [`keep-awake`](https://github.com/topics/keep-awake) topic on
 - 💬 **Questions / ideas:** [Discussions](https://github.com/aibrickai/lidrun/discussions)
 - 🌐 **Everything else:** [lidrun.com](https://lidrun.com)
 
+## Connect
+
+Follow LidRun for release notes, closed-lid tips and behind-the-scenes builds.
+
+<p align="center">
+  <a href="https://lidrun.com"><img src="https://img.shields.io/badge/Website-lidrun.com-7b61ff?style=for-the-badge&logo=googlechrome&logoColor=white" alt="LidRun website" /></a>
+  <a href="https://facebook.com/lidrun.mac"><img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="LidRun on Facebook" /></a>
+  <a href="https://www.threads.com/@lidrun.mac"><img src="https://img.shields.io/badge/Threads-000000?style=for-the-badge&logo=threads&logoColor=white" alt="LidRun on Threads" /></a>
+  <a href="https://www.youtube.com/@lidrun"><img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="LidRun on YouTube" /></a>
+  <a href="https://www.tiktok.com/@lidrunapp"><img src="https://img.shields.io/badge/TikTok-000000?style=for-the-badge&logo=tiktok&logoColor=white" alt="LidRun on TikTok" /></a>
+</p>
+
+<p align="center"><sub>Built by <strong>Henry AGI</strong> — the maker behind LidRun</sub></p>
+
+<p align="center">
+  <a href="https://x.com/henryaiagents"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="Henry AGI on X" /></a>
+  <a href="https://www.threads.com/@mrhenry.agi"><img src="https://img.shields.io/badge/Threads-000000?style=for-the-badge&logo=threads&logoColor=white" alt="Henry AGI on Threads" /></a>
+  <a href="https://www.instagram.com/mrhenry.agi"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Henry AGI on Instagram" /></a>
+  <a href="https://www.youtube.com/@henryxagi"><img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Henry AGI on YouTube" /></a>
+</p>
+
 ---
 
 <div align="center">
