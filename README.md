@@ -35,7 +35,7 @@ LidRun is a signed and Apple-notarized `.dmg` for macOS 13 (Ventura) and later. 
 | Method | How |
 | --- | --- |
 | **Direct (recommended)** | [**lidrun.com/download**](https://lidrun.com/download) → open the `.dmg`, drag **LidRun** to Applications. |
-| **Homebrew** | `brew install --cask aibrickai/lidrun/lidrun` |
+| **Homebrew** | `brew install --cask aibrickai/lidrun/lidrun` <br><sub>First time on Homebrew 6+? Trust the tap once: `brew trust aibrickai/lidrun`</sub> |
 | **GitHub Releases** | Grab `LidRun.dmg` from the [latest release](https://github.com/aibrickai/lidrun/releases/latest). |
 
 First launch shows the standard *"downloaded from the internet"* prompt — click **Open**. LidRun is code-signed with an Apple Developer ID and notarized, so no Privacy & Security workaround is needed. → [Install guide](docs/install.md)
