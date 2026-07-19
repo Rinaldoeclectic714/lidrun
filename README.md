@@ -106,6 +106,29 @@ macOS shows a one-time prompt for any app downloaded from the internet. LidRun i
 **Is there a subscription?**
 No. LidRun is a one-time purchase with lifetime updates. The free tier is free forever, with no time limit.
 
+## Alternatives &amp; related projects
+
+LidRun is built for one thing: keeping AI/dev work running through a **closed lid**, with battery/thermal guardrails and automatic release when the job ends. The macOS keep-awake space is friendly and active — if you want something simpler, or fully open-source, these are all worth a look.
+
+**Established keep-awake apps**
+
+- [KeepingYouAwake](https://github.com/newmarcel/KeepingYouAwake) — long-running, open-source Caffeine alternative for the menu bar.
+- [Amphetamine](https://apps.apple.com/us/app/amphetamine/id937984704) — the popular free app for general keep-awake with flexible triggers.
+
+**Open-source projects for AI agents &amp; the closed lid**
+
+- [modafinil](https://github.com/narcotic-sh/modafinil) — let your agents run while the MacBook lid is closed.
+- [Lidless](https://github.com/nghialuong/Lidless) — menu-bar app to keep a Mac running with the lid closed, for coding agents.
+- [aquarium](https://github.com/ZimengXiong/aquarium) — keep agents running "in your bag".
+- [cc-caffeine](https://github.com/samber/cc-caffeine) — prevents your computer from sleeping while Claude Code works.
+- [Awayke](https://github.com/daemonphantom/Awayke) — keep your Mac awake with the lid closed.
+- [StayAwake](https://github.com/TY-teo/StayAwake) — native menu-bar app for AI coding agents (MIT).
+- [Macchiato](https://github.com/ObservedObserver/Macchiato) — keep the Mac awake while your code agent works, even with the lid closed.
+- [Sleepless](https://github.com/Aboudjem/Sleepless) — MIT keep-awake with a battery-floor cutoff.
+- [eclam](https://github.com/jadhvank/eclam) — keeps the Mac awake when it matters, and lets it sleep when it's safer.
+
+Browse more in the [`keep-awake`](https://github.com/topics/keep-awake) topic on GitHub.
+
 ## Support
 
 - 🐞 **Bugs / help:** [open an issue](https://github.com/aibrickai/lidrun/issues/new/choose)
