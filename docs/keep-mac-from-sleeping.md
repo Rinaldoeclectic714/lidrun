@@ -66,6 +66,8 @@ By default a MacBook sleeps the moment you close the lid unless it's connected t
 
 ## 5. A workload-aware tool that auto-releases
 
+<p align="center"><img src="../assets/power-cooling.webp" width="620" alt="LidRun Power & Cooling settings — charging-only, low-battery pause, thermal pause, and live Mac health" /></p>
+
 The gap in every method above is that they don't know when your work is done. [LidRun](https://lidrun.com/download) is a menu-bar app built for exactly this: it holds the standard IOKit power assertions while a workload is running, then releases the Mac when the job ends or a safety limit is hit.
 
 - **Auto Mode** keeps the Mac awake only while your workload is actually working. Known agents — Claude Code, Cursor, Codex, Cline, Aider, Continue, Goose, Ollama, LM Studio — count as working *by presence*, so an agent idling at ~0% CPU while it waits on an API call is never dropped mid-task.

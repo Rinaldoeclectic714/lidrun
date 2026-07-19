@@ -15,6 +15,8 @@ So the two things you actually need are: *don't* judge "working" by CPU alone, a
 
 ## The recipe: Claude Code + Auto Mode + closed lid
 
+<p align="center"><img src="../assets/menu-bar.webp" width="620" alt="LidRun menu-bar control center — Auto Mode detecting agents, Keep Awake, Closed-Lid Mode, and live battery / temperature / CPU / fan health" /></p>
+
 1. **Start your long task** in the terminal as usual:
 
    ```sh

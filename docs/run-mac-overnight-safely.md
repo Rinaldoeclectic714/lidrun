@@ -43,6 +43,8 @@ pmset -g assertions
 
 ## Automating the guardrails with LidRun
 
+<p align="center"><img src="../assets/safety.webp" width="620" alt="LidRun Safety settings — low-battery auto-stop, thermal sleep, and Why is my Mac awake" /></p>
+
 [LidRun](https://lidrun.com/download) is a macOS menu-bar app that turns the checklist above into defaults you don't have to remember. It holds the Mac awake while work runs, then releases it — with the safety layer built in.
 
 - **Auto Mode** holds the Mac awake only while your workload is actually working. Known coding agents (Claude Code, Cursor, Codex, Cline, Aider, Continue, Goose, Ollama, LM Studio…) count as working *by presence*, so an agent sitting at ~0% CPU while it waits on an API call is never dropped — but a genuinely finished job lets the Mac sleep.
