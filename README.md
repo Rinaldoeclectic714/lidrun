@@ -55,6 +55,12 @@ First launch shows the standard *"downloaded from the internet"* prompt — clic
 
 ## Guides
 
+**In this repo:**
+- 📄 [Install LidRun & open it the first time](docs/install.md)
+- 📄 [Keep Claude Code / Cursor / Docker running with the lid closed](docs/keep-claude-code-running.md)
+- 📄 [How to keep your Mac from sleeping](docs/keep-mac-from-sleeping.md)
+- 📄 [Clamshell mode on a MacBook](docs/clamshell-mode.md)
+
 Full, up-to-date guides live on **lidrun.com** (English):
 
 - 📖 [Keep Claude Code running when the MacBook is closed](https://lidrun.com/blog/keep-claude-code-running-when-macbook-closed)
