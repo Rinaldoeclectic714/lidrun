@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/icon.png" width="84" alt="LidRun" />
+
 # LidRun — keep your Mac awake with the lid closed
 
 **Close the lid. Keep the run alive.** LidRun is a macOS menu-bar app that keeps your Mac awake — even with the lid shut — so Claude Code, Cursor, Codex, Docker and Ollama keep running while you step away. It releases the Mac automatically when the work is done or when battery/thermal limits are reached.
@@ -12,6 +14,8 @@
 ![Pay once](https://img.shields.io/badge/Pay%20once-no%20subscription-black)
 
 </div>
+
+<img src="assets/hero.webp" alt="LidRun — Keep AI working, close the lid. A safety-aware Mac runtime for Claude Code, Cursor, Codex and long AI/dev runs." width="100%" />
 
 ---
 
@@ -48,6 +52,13 @@ First launch shows the standard *"downloaded from the internet"* prompt — clic
 | ⌨️ **CLI** | `lidrun -- <command>` keeps the Mac awake for exactly one command. → [CLI docs](https://lidrun.com/blog/lidrun-cli-keep-awake-terminal) |
 
 **Works with:** Claude Code · Cursor · Codex · Docker · Ollama · Python / PyTorch · Node / Vite / webpack · Xcode · long terminal jobs · SSH sessions — and more.
+
+### See it in action
+
+<p align="center">
+  <img src="assets/menu-bar.webp" width="49%" alt="LidRun menu-bar control center — Auto Mode, Keep Awake, Closed-Lid Mode, and live battery / temperature / CPU / fan health" />
+  <img src="assets/safety.webp" width="49%" alt="LidRun Safety settings — low-battery auto-stop, thermal sleep, and Why is my Mac awake" />
+</p>
 
 ## Why LidRun (vs. the built-ins)
 
